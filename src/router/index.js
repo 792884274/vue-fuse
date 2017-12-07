@@ -40,11 +40,6 @@ export default new Router({
 	        component: Hebei
 	    },
 	    {
-	        path: '/aomen',
-	        name: 'Aomen',
-	        component: Aomen
-	    },
-	    {
 	        path: '/aomen/:id',
 	        name: 'Aomen',
 	        component: Aomen

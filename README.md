@@ -35,80 +35,36 @@ shanghai:tab切换
 chongqing:路由切换
 
 
+#### npm install 报错 
+
 ```
-transition写法：
-.vue文件内容
-<template>
-  <div>
-      <h2>新闻列表</h2>
-      <ul>
-          <li v-for="newsItem in news">
-              <router-link :to="'/news/'+newsItem.to">{{newsItem.text}}</router-link>
-          </li>
-      </ul> 
-      <button type="btton" @click="maskShow">按钮</button> 
-      <div class="mask" v-if="show" transition="change">
-        遮罩层
-        <button type="btton" @click="maskHidden">按钮</button> 
-      </div>        
-  </div>
-</template>
+Administrator@n-PC MINGW64 /d/20170503/helloWorld/GitHub.com/vue-fuse (master)
+$ npm install
 
-<script>
-export default {
-  name: 'Index',
-  data () {
-    return {
-      news: [
-        {
-          to: '1',
-          text: '新闻001'
-        },
-        {
-          to: '2',
-          text: '新闻002'
-        }
-      ],
-      show: false,
-      transitionName: 'change'
-    }
-  },
-  methods: {
-    maskShow(){
-      this.show=true;
-    },
-    maskHidden(){
-      this.show=false;
-    }
-  }
-}
-</script>
-<style lang='less'>
-  @import '../assets/less/main.less';
-</style>
+> chromedriver@2.33.2 install D:\20170503\helloWorld\GitHub.com\vue-fuse\node_modules\chromedriver
+> node install.js
 
+Downloading https://chromedriver.storage.googleapis.com/2.33/chromedriver_win32.zip
+Saving to C:\Users\ADMINI~1\AppData\Local\Temp\chromedriver\chromedriver_win32.zip
+ChromeDriver installation failed Error with http(s) request: Error: read ECONNRESET
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! chromedriver@2.33.2 install: `node install.js`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the chromedriver@2.33.2 install script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
 
-.less文件内容
-.change-transition {
-    transition: all .5s ease;
-    height: 30px;
-    padding: 10px;
-    background-color: #eee;
-    overflow: hidden;
-}
-.change-enter, .change-leave {
-    height: 0;
-    padding: 0 10px;
-    opacity: 0;
-}
-.mask{
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    opacity: 1;
-}
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\Administrator\AppData\Roaming\npm-cache\_logs\2017-12-07T01_19_54_718Z-debug.l
+og
+
+Administrator@n-PC MINGW64 /d/20170503/helloWorld/GitHub.com/vue-fuse (master)
+$
 ```
+
+> 经分析发现，某些版本下，chromedriver 的 zip 文件 url 的响应是 302 跳转，而在 install.js 里使用的是 Node.js 内置的 http 对象的 get 方法无法处理 302 跳转的情况；而在另外一些情况下，则是因为 googleapis.com 被墙了，此时即使采用科学上网的方法也仍然无法获取文件。
+
+无论是上述哪种情况，可以使用下面的命令安装：
+`npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver`
+
