@@ -8,7 +8,7 @@
 			<ol>
 				<li>
 					<router-link to="/tianjin">
-						Tianjin.vue:   
+						Tianjin.vue（1）:   
 					</router-link>
 					商品的全选、单选、价格计算
 				</li>
