@@ -1,7 +1,7 @@
 <template>
 	<div class="shanxi-01">
 		<div class="carousel-container">
-			<ul class="carousel-items" :style="{width: items.length*100+'%',left: -100*nowLocal+'%'}" @touchstart="actionStart($event)" @touchmove="actionMove($event)" @touchend="actionEnd($event)">
+			<ul class="carousel-items" :style="{width: items.length*100+'%',left: -100*nowLocal+'%'}" @touchstart="actionStart($event)" @touchmove="actionMove($event)" @touchend="actionEnd">
 				<li class="carousel-item f_l" v-for="item in items" :style="{width: 100/items.length+'%'}">
 					<router-link :to="item.to">
 						<img :src="item.img" alt="">
@@ -134,6 +134,16 @@ export default {
 }
 </code></pre>
 			</div>
+
+			<div class="vs">
+				<ul>
+					<li>1.样式设定。html中<code>:style=&quot;{width: items.length*100+&#39;%&#39;,left: -100*nowLocal+&#39;%&#39;}&quot;</code>首先动态计算轮播图父级样式，<code>:style=&quot;{width: 100/items.length+&#39;%&#39;}&quot;</code>实现轮播图子级样式。</li>
+					<li>2.图片引入。内容为固定的值，直接写<code>&lt;img src=&quot;../../assets/images/carousel/1.png&quot; /&gt;</code>。本地图片引入，因为在js里写图片路径只是字符串，webpack不会处理，所以需要用<code>import</code> <code>require</code>引入。线上图片引入，直接写地址。</li>
+					<li>3.轮播图的自动轮播。<code>turn</code>实现了当前位置数值<code>nowLocal</code>的增减和判断。<code>goPlay</code>通过定时器<code>setInterval</code>实现轮播图每隔3s进行变化。需要看到位置变化过程，则在生命周期<router-link to="/aomen/lifecycle"><code>mounted</code></router-link>函数中设定轮播图的<code>transition-duration</code>;</li>
+					<li>4.手势操作轮播图。 <code>touchstart</code>、 <code>touchmove</code> 、<code>touchend</code> 实现了手指接触轮播图停止，手指拖动轮播图滑动，手指离开轮播图继续自动轮播图的功能。手指操作轮播图过程中不需要有过渡效果持续的情况，在<code>touchstart</code>将<code>transition-duration</code> 设定为0s。同时，通过触发函数 <code>actionStart($event)</code> 传到的方法中的事件对象 <code>$event</code>获得手指滑动的初始位置 <code>e.touches[0].pageX</code> 。在手指滑动过程中， <code>touchmove</code>通过现在手指位置与原来位置的比对来设定轮播图的位置。手指离开时，<code>touchend</code>通过拖动距离和图片一半宽度的条件对比，判断轮播图左滑还是右滑恢复正常位置，以及随后的自动轮播重启。</li>
+				</ul>
+			</div>
+
 		</div>
 	</div>
 </template>
@@ -208,7 +218,7 @@ export default {
 				left: -this.nowLocal*this.width+this.disX+'px'
 			});
 		},
-		actionEnd(e){
+		actionEnd(){
 			var width=this.width/2;
 			var distance=this.disX;
 			var positive=Math.abs(distance);

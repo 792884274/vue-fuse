@@ -122,7 +122,7 @@ methods:{
 		<div class="vs">
 			<ul>
 				<li>1.父组件定义总数量<code>amount</code>和单行的数量 <code>itemsNumber</code>，通过属性传递给子组件。</li>
-				<li>2.子组件的数据来源于父组件，在生命周期函数<code>created</code>中获得。</li>
+				<li>2.子组件的数据来源于父组件，在生命周期函数<router-link to="/aomen/lifecycle"><code>created</code></router-link>中获得。</li>
 				<li>3.在子组件各行的数量增减函数<code>add</code>、 <code>reduce</code> 调用中，需要有条件判断，如单行数目最小为0、总数目小于99.</li>
 				<li>4.输入框<code>keyup</code>事件直接调用<code>calculate</code>。</li>
 				<li>5.增减函数和输入框操作中调用的<code>calculate</code>来计算总数量，同时使用<router-link to="/aomen/emit"><code>$emit</code></router-link>来遍历父组件的<code>deassign</code> 事件，并返回总数量<code>this.totalNumber</code>和单行数量<code>this.items</code>。父组件触发<code>deassign</code> 事件，调用<code>numberChange</code>事件，重新给总数量和单行数量赋值。这样再次调用子组件时，数值会重新获得。</li>

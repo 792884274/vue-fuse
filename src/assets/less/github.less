@@ -116,7 +116,7 @@ pre {
 
 .vs hr {
   height: 0;
-  margin: 50px 0;
+  margin: 2em 0;
   overflow: hidden;
   background: transparent;
   border: 0;
@@ -131,7 +131,7 @@ pre {
 .vs hr:after {
   display: table;
   clear: both;
-  content: "华丽的分割线";
+  content: "";
   color: #ccc;
   position: absolute;
   left: 50%;
@@ -381,7 +381,7 @@ pre {
 .vs hr {
   height: 1px;
   padding: 0;
-  margin: 100px 0;
+  margin: 2em 0;
   background-color: #e7e7e7;
   border: 0 none;
 }
@@ -728,6 +728,7 @@ pre {
   position: relative;
   border-color: #4078c0;
 }
+/* 添加样式 */
 .vs ul li{
   text-indent: 1em;
 }
@@ -761,4 +762,16 @@ pre {
 .vs a code{
   color: #42b983;
   font-weight: bolder;
+}
+.vs h5.point-header{
+  position: relative;
+}
+.vs h5.point-header:before{
+  content: "#";
+  color: #42b983;
+  position: absolute;
+  left: -0.8em;
+  bottom: -2px;
+  font-size: 1.2em;
+  font-weight: bold;
 }

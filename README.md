@@ -29,10 +29,7 @@ npm test
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-beijing:
-tianjin:商品的全选、单选、价格计算
-shanghai:tab切换
-chongqing:路由切换
+
 
 
 #### npm install 报错 

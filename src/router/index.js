@@ -45,6 +45,11 @@ export default new Router({
 	        component: Aomen
 	    },
 	    {
+	        path: '/aomen',
+	        name: 'Aomen',
+	        component: Aomen
+	    },
+	    {
 	        path: '/shanxi',
 	        name: 'Shanxi',
 	        component: Shanxi
