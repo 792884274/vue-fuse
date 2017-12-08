@@ -8,37 +8,37 @@
 			<ol>
 				<li>
 					<router-link to="/tianjin">
-						Tianjin.vue:   
+						Tianjin.vue(天津):   
 					</router-link>
 					商品的全选、单选、价格计算
 				</li>
 				<li>
 					<router-link to="/shanghai">
-						Shanghai.vue:   
+						Shanghai.vue(上海):   
 					</router-link>
 					tab切换
 				</li>
 				<li>
 					<router-link to="/chongqing">
-						Chongqing.vue:   
+						Chongqing.vue(重庆):   
 					</router-link>
 					路由切换
 				</li>
 				<li>
 					<router-link to="/hebei">
-						Hebei.vue:   
+						Hebei.vue(河北):   
 					</router-link>
 					父组件与子组件之间数据传递
 				</li>
 				<li>
 					<router-link to="/shanxi">
-						Shanxi.vue:   
+						Shanxi.vue(山西):   
 					</router-link>
 					移动端轮播图
 				</li>
 				<li>
 					<router-link to="/aomen">
-						Aomen.vue:   
+						Aomen.vue(澳门):   
 					</router-link>
 					项目知识点
 				</li>
