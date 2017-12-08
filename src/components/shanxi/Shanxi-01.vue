@@ -8,6 +8,9 @@
 					</router-link>
 				</li>
 			</ul>
+			<ul class="carousel-dots">
+				<li class="dot" v-for="(item,index) in items" :class="{active:index==nowLocal}"></li>
+			</ul>
 		</div>
 		<div class="content">
 			<div class="vs html">
@@ -24,6 +27,10 @@
         &lt;img :src=&quot;item.img&quot; alt=&quot;&quot;&gt;
       &lt;/router-link&gt;
     &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ul class=&quot;carousel-dots&quot;&gt;
+    &lt;li class=&quot;dot&quot; v-for=&quot;(item,index) in items&quot; 
+    :class=&quot;{active:index==nowLocal}&quot;&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;
 </code></pre>
@@ -141,6 +148,7 @@ export default {
 					<li>2.图片引入。内容为固定的值，直接写<code>&lt;img src=&quot;../../assets/images/carousel/1.png&quot; /&gt;</code>。本地图片引入，因为在js里写图片路径只是字符串，webpack不会处理，所以需要用<code>import</code> <code>require</code>引入。线上图片引入，直接写地址。</li>
 					<li>3.轮播图的自动轮播。<code>turn</code>实现了当前位置数值<code>nowLocal</code>的增减和判断。<code>goPlay</code>通过定时器<code>setInterval</code>实现轮播图每隔3s进行变化。需要看到位置变化过程，则在生命周期<router-link to="/aomen/lifecycle"><code>mounted</code></router-link>函数中设定轮播图的<code>transition-duration</code>;</li>
 					<li>4.手势操作轮播图。 <code>touchstart</code>、 <code>touchmove</code> 、<code>touchend</code> 实现了手指接触轮播图停止，手指拖动轮播图滑动，手指离开轮播图继续自动轮播图的功能。手指操作轮播图过程中不需要有过渡效果持续的情况，在<code>touchstart</code>将<code>transition-duration</code> 设定为0s。同时，通过触发函数 <code>actionStart($event)</code> 传到的方法中的事件对象 <code>$event</code>获得手指滑动的初始位置 <code>e.touches[0].pageX</code> 。在手指滑动过程中， <code>touchmove</code>通过现在手指位置与原来位置的比对来设定轮播图的位置。手指离开时，<code>touchend</code>通过拖动距离和图片一半宽度的条件对比，判断轮播图左滑还是右滑恢复正常位置，以及随后的自动轮播重启。</li>
+					<li>5.轮播图焦点设定。运用<code>:class=&quot;{active:index==nowLocal}&quot;</code>给轮播图当前的焦点添加<code>active</code>,点亮焦点。</li>
 				</ul>
 			</div>
 
