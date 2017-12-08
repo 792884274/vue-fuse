@@ -1,5 +1,6 @@
 <template>
 	<div class="hebei">
+		<Gotop :className="className"></Gotop>
 		<div class="exh">
 			<ul class="goods">
 				<li class="goods-item" v-for="item in items">
@@ -135,6 +136,7 @@ methods:{
 		name: 'Hebei',
 		data () {
 			return {
+				className: 'hebei',
 				totalNumber: 0,
 				items: [
 					{

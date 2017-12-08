@@ -1,5 +1,6 @@
 <template>
 	<div class="shanghai">
+		<Gotop :className="className"></Gotop>
 		<Shanghai01 :tabs="tabs"></Shanghai01>
 	</div>
 </template>
@@ -9,6 +10,7 @@
 		name: 'Shanghai',
 		data () {
 			return {
+				className: 'shanghai',
 				tabs: {
 					buttons: [
 						{

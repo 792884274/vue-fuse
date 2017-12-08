@@ -1,5 +1,6 @@
 <template>
 	<div class="shanxi">
+		<Gotop :className="className"></Gotop>
 		<Shanxi01></Shanxi01>
 	</div>
 </template>
@@ -9,7 +10,7 @@ export default {
 	name: 'Shanxi',
 	data () {
 		return {
-			
+			className: 'shanxi',
 		}
 	},
 	methods: {

@@ -1,5 +1,6 @@
 <template>
 	<div class="tianjin">
+		<Gotop :className="className"></Gotop>
 		<!-- 第一个例子 -->
 		<Tianjin01 :item="single"></Tianjin01>
 		<!-- 第二个例子 -->
@@ -13,6 +14,7 @@
 		name: 'Tianjin',
 		data () {
 			return {
+				className: 'tianjin',
 				single: {
 					price: 4,
 			        number: 5,

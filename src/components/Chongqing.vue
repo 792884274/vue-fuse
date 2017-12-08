@@ -1,5 +1,6 @@
 <template>
 	<div class="chongqing">
+		<Gotop :className="className"></Gotop>
 		<Chongqing01 :news="chongqing01"></Chongqing01>  
 	</div>
 </template>
@@ -9,6 +10,7 @@
 		name: 'Chongqing',
 		data () {
 			return {
+				className: 'chongqing',
 				chongqing01: [
 					{
 						id: '01',

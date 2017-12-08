@@ -1,5 +1,6 @@
 <template>
 	<div class="beijing">
+		<Gotop :className="className"></Gotop>
 		<div class="vs">
 			<h3 id="-">介绍</h3>
 			<p>&nbsp;&nbsp;本项目为<code>npm i -g vue-cli</code>构建的Vue单页应用。全局样式使用<code>github.css</code>和<code>bootstrap.css</code>，搭配Font Awesome图标。node的<code>fs</code>、<code>marked</code>模块将<code>*.md</code>文件转换为<code>*.html</code>文件，做小项目案例的文字解析使用。项目中穿插采用到jq的相关方法。</p>
@@ -42,6 +43,12 @@
 					</router-link>
 					项目知识点
 				</li>
+				<li>
+					<router-link to="/aomen/gotop">
+						Gotop.vue:   
+					</router-link>
+					公共组件，点击头部页面回到顶部
+				</li>
 			</ol>
 		</div>
 	</div>
@@ -51,7 +58,7 @@ export default {
 	name: 'Beijing',
 	data () {
 		return {
-
+			className: 'beijing'
 		}
 	}
 }
