@@ -2,9 +2,9 @@
 	<div class="hebei">
 		<Gotop :className="className"></Gotop>
 		<div class="exh">
-			<ul class="goods">
-				<li class="goods-item" v-for="item in items">
-					<img src="../assets/images/logo.png" alt="" class="goods-img f_l">
+			<ul class="goods lc">
+				<li class="goods-item lc-item" v-for="item in items">
+					<img src="../assets/images/logo.png" alt="" class="goods-img f_l lc-img">
 					<div class="count f_r">
 						<span class="reduce btn btn-default btn-xs" v-on:click="reduce(item)">-</span>
 						<input type="text" class="form-control number" aria-describedby="sizing-addon3" v-model="item.number" @keyup="calculate">

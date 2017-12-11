@@ -8,8 +8,8 @@
 	</div>
 </template>
 <script>
-	import Tianjin01 from './tianjin/tianjin-01.vue'
-	import Tianjin02 from './tianjin/tianjin-02.vue'
+	import Tianjin01 from './tianjin/Tianjin-01.vue'
+	import Tianjin02 from './tianjin/Tianjin-02.vue'
 	export default{
 		name: 'Tianjin',
 		data () {

@@ -7,6 +7,8 @@ import Shanghai from '@/components/Shanghai'
 import Chongqing from '@/components/Chongqing'
 import Hebei from '@/components/Hebei'
 import Shanxi from '@/components/Shanxi'
+import Liaoning from '@/components/Liaoning'
+import Jilin from '@/components/Jilin'
 import Aomen from '@/components/Aomen'
 
 Vue.use(Router)
@@ -35,6 +37,11 @@ export default new Router({
 	        component: Chongqing
 	    },
 	    {
+	    	path: '/chongqing/:id',
+	    	name: 'Chongqing01Detail',
+	    	component: Chongqing01Detail
+	    },
+	    {
 	        path: '/hebei',
 	        name: 'Hebei',
 	        component: Hebei
@@ -55,9 +62,14 @@ export default new Router({
 	        component: Shanxi
 	    },
 	    {
-	    	path: '/chongqing/:id',
-	    	name: 'Chongqing01Detail',
-	    	component: Chongqing01Detail
+	        path: '/liaoning',
+	        name: 'Liaoning',
+	        component: Liaoning
+	    },
+	    {
+	        path: '/jilin',
+	        name: 'Jilin',
+	        component: Jilin
 	    },
 	]
 })

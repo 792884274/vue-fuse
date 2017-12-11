@@ -1,10 +1,12 @@
 <template>
-	<ul class="index-nav">
-      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
-        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
-        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
-      	</li>
-    </ul> 
+	<div class="nav-container">
+		<ul class="index-nav">
+	      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
+	        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
+	        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
+	      	</li>
+	    </ul> 
+	</div>
 </template>
 <script>
 	export default{
@@ -46,6 +48,18 @@
 					{
 						to: '/shanxi',
 						text: '山西',
+						active: false,
+						amount: false
+					},
+					{
+						to: '/liaoning',
+						text: '辽宁',
+						active: false,
+						amount: false
+					},
+					{
+						to: '/jilin',
+						text: '吉林',
 						active: false,
 						amount: false
 					},
