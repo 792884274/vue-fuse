@@ -52,18 +52,14 @@
 				number: 0
 			}
 		},
-		created (){
-			
-		},
 		mounted (){
-			this.$emit('pageChange','example');
 			this.element=document.querySelector('.liaoning-01');
 			this.elementParent=document.querySelector('.liaoning-01').parentNode;
             this.load();
 			this.onScroll();
 		},
 		methods: {
-			//页面别卷起的高度
+			//页面被卷起的高度
 			scrollTop(){
 				return this.elementParent.scrollTop;
 			},

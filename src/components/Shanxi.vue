@@ -13,9 +13,6 @@ export default {
 			className: 'shanxi',
 		}
 	},
-	methods: {
-		
-	},
 	components: {
 		Shanxi01
 	}
