@@ -1,19 +1,25 @@
 <template>
-	<div class="nav-container">
-		<ul class="index-nav" :style="{transform: 'translate3d('+-0+'px, 0px, 0px)'}">
-	      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
-	        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
-	        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
-	      	</li>
-	    </ul> 
+	<div id="" class="nav-container">
+		<div class="scroll-container" id="wrapper" v-cloak>
+			<!-- <ul class="index-nav scroll" id="scroller" :style="{width: scrollWidth*3.8+'px'}"> -->
+			<ul class="index-nav scroll" id="scroller">
+		      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
+		        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
+		        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
+		      	</li>
+		    </ul> 
+		</div>
 	</div>
+	
 </template>
 <script>
+	import IScroll from 'iscroll/build/iscroll.js'
 	export default{
 		name:'Nav',
 		data(){
 			return {
 				isActive:0,
+				scrollWidth: 0,
 				indexNav: [
 					{
 						to: '/',
@@ -64,6 +70,24 @@
 						amount: false
 					},
 					{
+						to: '/heilongjiang',
+						text: '黑龙江',
+						active: false,
+						amount: false
+					},
+					{
+						to: '/jiangsu',
+						text: '江苏',
+						active: false,
+						amount: false
+					},
+					{
+						to: '/zhejiang',
+						text: '浙江',
+						active: false,
+						amount: false
+					},
+					{
 						to: '/aomen',
 						text: '澳门',
 						active: false,
@@ -77,8 +101,14 @@
 		created (){
 			this.changeActive();	
 		},
-		mouted (){
-			console.log($('.navItem').width());
+		mounted (){
+			this.scrollWidth=this.indexNav.length*$('.navItem').width();
+			console.log(this.scrollWidth,$('.navItem').width());
+			$('#scroller').css({
+				width: '2401px'
+			})
+			new IScroll('#wrapper', { eventPassthrough: true, scrollX: true, scrollY: false, preventDefault: false });
+			// console.log($('.navItem').width());
 		},
 		/*在组件销毁前调用，但这并不能监听到页面退出的事件*/
 		beforeDestory () {

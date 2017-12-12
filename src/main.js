@@ -4,11 +4,10 @@ import router from './router'
 import Nav from './components/Nav'
 import Gotop from './components/common/Gotop'
 import $ from 'jquery'
-import IScroll from 'iscroll'
 import './assets/css/bootstrap.min.css'  
 import './assets/js/bootstrap.min' 
 import './assets/less/github.less'   
-import 'font-awesome/css/font-awesome.css'   
+import 'font-awesome/css/font-awesome.css'  
 
 Vue.config.productionTip = false
 
