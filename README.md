@@ -65,3 +65,9 @@ $
 无论是上述哪种情况，可以使用下面的命令安装：
 `npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver`
 
+
+```
+npm ERR! Unexpected end of JSON input while parsing near '...size":6073,"noattachm'  npm ERR! A comp
+```
+
+运行`npm cache clean --force`即可解决”Unexpected end of JSON input while parsing near”错误。

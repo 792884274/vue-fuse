@@ -1,6 +1,6 @@
 <template>
 	<div class="nav-container">
-		<ul class="index-nav">
+		<ul class="index-nav" :style="{transform: 'translate3d('+-0+'px, 0px, 0px)'}">
 	      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
 	        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
 	        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
@@ -77,6 +77,9 @@
 		created (){
 			this.changeActive();	
 		},
+		mouted (){
+			console.log($('.navItem').width());
+		},
 		/*在组件销毁前调用，但这并不能监听到页面退出的事件*/
 		beforeDestory () {
 		    // 在此同样可对 localStorage 做一些处理
@@ -102,7 +105,10 @@
 		      			_this.indexNav[index].active=true;
 		      		}
 		      	})
-  			}
+  			},
+  			getStyle(ele,attr){
+				return parseFloat(ele.currentStyle?ele.currentStyle[attr]:getComputedStyle(ele)[attr]);
+			}
 		},
 		watch: {
 		    // 如果路由有变化，会再次执行该方法

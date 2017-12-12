@@ -27,7 +27,8 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'assets': path.resolve(__dirname, '../src/assets'),  
-      'jquery': "jquery/src/jquery"  
+      'jquery': "jquery/src/jquery",
+      'iScroll': "iscroll/build/iscroll"
     }
   },
   module: {
