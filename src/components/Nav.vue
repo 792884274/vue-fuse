@@ -1,7 +1,7 @@
 <template>
 	<div id="" class="nav-container">
 		<div class="scroll-container" id="wrapper" v-cloak>
-			<!-- <ul class="index-nav scroll" id="scroller" :style="{width: scrollWidth*3.8+'px'}"> -->
+			<!-- <ul class="index-nav scroll" id="scroller" :style="{width: scrollWidth+2+'px'}"> -->
 			<ul class="index-nav scroll" id="scroller">
 		      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
 		        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
@@ -102,13 +102,14 @@
 			this.changeActive();	
 		},
 		mounted (){
-			this.scrollWidth=this.indexNav.length*$('.navItem').width();
-			console.log(this.scrollWidth,$('.navItem').width());
+			/*this.scrollWidth=this.indexNav.length*$('.navItem').width();
 			$('#scroller').css({
-				width: '2401px'
+				width: this.scrollWidth+'px'
 			})
-			new IScroll('#wrapper', { eventPassthrough: true, scrollX: true, scrollY: false, preventDefault: false });
-			// console.log($('.navItem').width());
+			new IScroll('#wrapper', { 
+				scrollX: true, 
+				scrollY: false
+			});*/
 		},
 		/*在组件销毁前调用，但这并不能监听到页面退出的事件*/
 		beforeDestory () {
