@@ -26,31 +26,19 @@
 		data () {
 			return {
 				id: 'example',
-				items: [
-					{
-						img: image,
-						to: '/'
-					},
-					{
-						img: image,
-						to: '/'
-					},
-					{
-						img: image,
-						to: '/'
-					},
-					{
-						img: image,
-						to: '/'
-					},
-					{
-						img: image,
-						to: '/'
-					}
-				],
+				items: [],
 				more: true,
-				number: 0
+				number: 0,
+				analog: []
 			}
+		},
+		created (){
+			this.$http.get('/api/liaoning')
+			.then((res)=>{
+				this.analog=res.data.data.items;
+			},(err)=>{
+				console.log(err);
+			})
 		},
 		mounted (){
 			this.element=document.querySelector('.liaoning-01');
@@ -88,29 +76,7 @@
 		    	})
 		    },
 		    loadDown(){
-		    	var analog=[
-					{
-						img: image,
-						to: '/'
-					},
-					{
-						img: image,
-						to: '/'
-					},
-					{
-						img: image,
-						to: '/'
-					},
-					{
-						img: image,
-						to: '/'
-					},
-					{
-						img: image,
-						to: '/'
-					}
-				];
-		    	analog.forEach(item=>{
+		    	this.analog.forEach(item=>{
 					this.items.push(item);
 	            })
 		    },

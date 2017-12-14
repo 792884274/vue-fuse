@@ -25,27 +25,86 @@
 
 		<div class="vs">
 			<h3 id="-">项目知识点</h3>
-			<div id="emit">
-				<h5 id="vm-emit-event-args-" class="point-header">vm.$emit( event, […args] )</h5>
-				<h6 id="-">参数：</h6>
-				<ul>
-					<li><code>{string} event</code></li>
-					<li><code>[...args]</code></li>
-				</ul>
-				<p>触发当前实例上的事件。附加参数都会传给监听器回调。</p>
-				<p>项目中父组件<code>App.vue</code>使用 <code>@deassign=&quot;numberChange&quot;</code>，监听由子组件 <code>Hebei.vue</code> 中<code>vm.$emit</code>触发的事件，通过 <code>numberChange()</code>接受从子组件传递过来的数据，通知父组件数据改变。</p>
-			</div>
-			<div id="lifecycle">
-				<h5 id="-" class="point-header">生命周期</h5>
-				<img src="../assets/images/lifecycle.png" alt="">
-			</div>
-			<div id="gotop">
-				<h5 id="-"  class="point-header">公共组件定义</h5>
-				<pre><code>import 组件名 from &#39;组件地址&#39;
-Vue.component(&#39;组件名&#39;, 组件名);
+			<ul>
+				<li id="emit">
+					<h5 id="vm-emit-event-args-" class="point-header">vm.$emit( event, […args] )</h5>
+					<h6 id="-">参数：</h6>
+					<ul>
+						<li><code>{string} event</code></li>
+						<li><code>[...args]</code></li>
+					</ul>
+					<p>触发当前实例上的事件。附加参数都会传给监听器回调。</p>
+					<p>项目中父组件<code>App.vue</code>使用 <code>@deassign=&quot;numberChange&quot;</code>，监听由子组件 <code>Hebei.vue</code> 中<code>vm.$emit</code>触发的事件，通过 <code>numberChange()</code>接受从子组件传递过来的数据，通知父组件数据改变。</p>
+				</li>
+				<li id="lifecycle">
+					<h5 id="-" class="point-header">生命周期</h5>
+					<img src="../assets/images/lifecycle.png" alt="">
+				</li>
+				<li id="gotop">
+					<h5 id="-"  class="point-header">公共组件定义</h5>
+					<pre><code>import 组件名 from &#39;组件地址&#39;
+  Vue.component(&#39;组件名&#39;, 组件名);</code></pre>
+					<p>在<code>main.js</code>中<code>import</code>引入组件，然后在定义组件。</p>
+				</li>
+				<li id="resource">
+					<h5 id="-" class="point-header">vue-resource</h5>
+					<ul>
+						<li>1.<code>npm install vue-resource --save</code>安装<code>vue-resource</code>。</li>
+						<li>2.在<code>main.js</code>中全局引用<code>vue-resourve</code>。
+							<div class="vs js">
+								<pre><code>
+import VueResource from &#39;vue-resource&#39;
+Vue.use(VueResource)
 </code></pre>
-				<p>在<code>main.js</code>中<code>import</code>引入组件，然后在定义组件。</p>
-			</div>
+							</div>
+						</li>
+						<li>3.在生命周期<code>created</code>中获取数据。(本例中请求的是本地数据)
+							<div class="vs js">
+		<pre><code>
+this.$http.get(&#39;/someUrl&#39;).then(response =&gt; {
+  // get body data 
+  this.someData = response.body;
+  }, response =&gt; {
+  // error callback 
+});
+</code></pre>
+						</div>
+						</li>
+					</ul>
+				</li>
+				<li id="express">
+					<h5 id="-" class="point-header">本地数据访问</h5>
+					<ul>
+						<li>1.在<code>webpack.dev.conf.js</code>配置本地数据访问。</li>
+						<li>2.开启一个服务。
+							<div class="vs js">
+		<pre><code>
+const express=require(&#39;express&#39;)
+const app=express()
+var appData=require(&#39;../data.json&#39;)
+var apiRoutes=express.Router()
+app.use(&#39;/api&#39;,apiRoutes)
+</code></pre>
+							</div>
+						</li>
+						<li>3.进行数据的路由接口配置,在<code>devServer</code>中添加属性配置。
+							<div class="vs js">
+							<pre><code>
+before(app) {
+  app.get(&#39;/api/liaoning&#39;,(req,res)=&gt;{
+    res.json({
+      errno: 0,
+      data: appData.liaoning
+    })
+  })
+}
+</code></pre>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			
 		</div>
 		<hr>
 		<div class="vs">

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueResource from 'vue-resource'
 import Nav from './components/Nav'
 import Gotop from './components/common/Gotop'
 import $ from 'jquery'
@@ -10,6 +11,8 @@ import './assets/less/github.less'
 import 'font-awesome/css/font-awesome.css'  
 
 Vue.config.productionTip = false
+
+Vue.use(VueResource)
 
 Vue.component('Gotop', Gotop);
 Vue.component('Nav', Nav);
