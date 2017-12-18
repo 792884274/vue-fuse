@@ -33,7 +33,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 #### npm install 报错 
-
+- 1.
 ```
 Administrator@n-PC MINGW64 /d/20170503/helloWorld/GitHub.com/vue-fuse (master)
 $ npm install
@@ -62,10 +62,13 @@ $
 
 > 经分析发现，某些版本下，chromedriver 的 zip 文件 url 的响应是 302 跳转，而在 install.js 里使用的是 Node.js 内置的 http 对象的 get 方法无法处理 302 跳转的情况；而在另外一些情况下，则是因为 googleapis.com 被墙了，此时即使采用科学上网的方法也仍然无法获取文件。
 
+- 2.
 无论是上述哪种情况，可以使用下面的命令安装：
-`npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver`
+```
+npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver
+```
 
-
+- 3.
 ```
 npm ERR! Unexpected end of JSON input while parsing near '...size":6073,"noattachm'  npm ERR! A comp
 ```
