@@ -9,6 +9,7 @@ import Hebei from '@/components/Hebei'
 import Shanxi from '@/components/Shanxi'
 import Liaoning from '@/components/Liaoning'
 import Jilin from '@/components/Jilin'
+import Heilongjiang from '@/components/Heilongjiang'
 import Aomen from '@/components/Aomen'
 
 Vue.use(Router)
@@ -70,6 +71,11 @@ export default new Router({
 	        path: '/jilin',
 	        name: 'Jilin',
 	        component: Jilin
+	    },
+	    {
+	        path: '/heilongjiang',
+	        name: 'Heilongjiang',
+	        component: Heilongjiang
 	    },
 	]
 })

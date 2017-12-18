@@ -6,6 +6,7 @@
 		      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
 		        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
 		        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
+		        	<span class="amount" v-if="navItem.vuex">{{total}}</span>
 		      	</li>
 		    </ul> 
 		</div>
@@ -25,73 +26,85 @@
 						to: '/',
 						text: '北京',
 						active: true,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/tianjin',
 						text: '天津',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/shanghai',
 						text: '上海',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/chongqing',
 						text: '重庆',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/hebei',
 						text: '河北',
 						active: false,
-						amount: true
+						amount: true,
+						vuex: false
 					},
 					{
 						to: '/shanxi',
 						text: '山西',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/liaoning',
 						text: '辽宁',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/jilin',
 						text: '吉林',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/heilongjiang',
 						text: '黑龙江',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: true
 					},
 					{
 						to: '/jiangsu',
 						text: '江苏',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/zhejiang',
 						text: '浙江',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/aomen',
 						text: '澳门',
 						active: false,
-						amount: false
+						amount: false,
+						vuex: false
 					}
 				]
 			}
@@ -111,9 +124,10 @@
 				scrollY: false
 			});*/
 		},
-		/*在组件销毁前调用，但这并不能监听到页面退出的事件*/
-		beforeDestory () {
-		    // 在此同样可对 localStorage 做一些处理
+		computed: {
+			total (){
+				return this.$store.getters.getNumber
+			}
 		},
 		methods:{
 			changePage:function (index) {
