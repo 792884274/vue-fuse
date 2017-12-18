@@ -5,9 +5,9 @@
 				<li class="goods-item lc-item" v-for="item in items">
 					<img src="../../assets/images/logo.png" alt="" class="goods-img f_l lc-img">
 					<div class="count f_r">
-						<span class="reduce btn btn-default btn-xs" v-on:click="reduce(item,1)">-</span>
+						<span class="reduce btn btn-default btn-xs" v-on:click="reduce(item)">-</span>
 						<input type="text" class="form-control number" aria-describedby="sizing-addon3" v-model="item.number" @keyup="calculate">
-						<span class="add btn btn-default btn-xs" v-on:click="add(item,1)">+</span>
+						<span class="add btn btn-default btn-xs" v-on:click="add(item)">+</span>
 					</div>
 				</li>
 			</ul>
@@ -19,40 +19,39 @@
 		name: 'heilongjiang-01',
 		data () {
 			return {
-				items: [
-					{
-						number: 0
-					},
-					{
-						number: 0
-					},
-					{
-						number: 0
-					}
-				],
-				totalNumber: 0
+				
 			}
 		},
 		mounted() {
-			console.log(this.$store);
+			// console.log(this.$store);
+		},
+		computed: {
+			items (){
+				return this.$store.getters.getItems
+			}
 		},
 		methods: {
-			add(item,number) {
-				item.number+=parseInt(number);
-				this.$store.dispatch('addNumber',parseInt(number));
+			add(item) {
+				item.number++;
+				this.calculate();
 			},
-			reduce(item,number) {
+			reduce(item) {
 				if (item.number==0) return;
-				item.number-=parseInt(number);
-				this.$store.dispatch('reduceNumber',parseInt(number));
+				item.number--;
+				this.calculate();
 			},
 			calculate(){
 				var _this=this;
-				this.totalNumber=0;
+				var total=0;
+				var obj={
+					items: [],
+					total: 0
+				};
+				obj.items=this.items;
 				this.items.forEach(function (item) {
-					_this.totalNumber+=Number(item.number);
+					obj.total+=Number(item.number);
 				})
-				this.$store.dispatch('calculateNumber',this.totalNumber);
+				this.$store.dispatch('calculateNumber',obj);
 			}
 		}
 	}

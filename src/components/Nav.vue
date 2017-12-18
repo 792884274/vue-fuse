@@ -126,7 +126,7 @@
 		},
 		computed: {
 			total (){
-				return this.$store.getters.getNumber
+				return this.$store.getters.getTotal
 			}
 		},
 		methods:{

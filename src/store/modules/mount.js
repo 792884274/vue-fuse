@@ -1,32 +1,36 @@
 const state = {
-	number: 0
+	total: 0,
+	items: [
+		{
+			number: 0
+		},
+		{
+			number: 0
+		},
+		{
+			number: 0
+		}
+	]
 }
 const getters = {
-	getNumber: function (state) {
-		return state.number
-	}
-		
+	getTotal: function (state) {
+		// console.log(state.total);
+		return state.total
+	},
+	getItems: function (state) {
+		// console.log(state.items);
+		return state.items
+	}		
 }
 const actions = {
-	addNumber (context,number){
-		context.commit('add',number)
-	},
-	reduceNumber (context,number){
-		context.commit('reduce',number)
-	},
-	calculateNumber (context,number){
-		context.commit('calculate',number)
+	calculateNumber (context,obj){
+		context.commit('calculate',obj)
 	}
 }
 const mutations = {
-	add (state,number){
-		state.number+=number
-	},
-	reduce (state,number){
-		state.number-=number
-	},
-	calculate (state,number){
-		state.number=number
+	calculate (state,obj){
+		state.items=obj.items;
+		state.total=obj.total;
 	}
 }
 
