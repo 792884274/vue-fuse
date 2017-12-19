@@ -15,10 +15,24 @@
 		<div class="vs">
 			<h3 id="-">类库引用</h3>
 
-			<h5 id="font-awesome">font-awesome</h5>
+			<h5 id="font-awesome" class="point-header">font-awesome</h5>
 			<p><code>npm install font-awesome</code></p>
 			<p>在<code>main.js</code>里添加</p>
 			<p><code>import &#39;font-awesome/css/font-awesome.css&#39;</code></p>
+			<p>发布的时候(<code>npm run build</code>），<code>font-awesome</code>资源却无法加载。需要在<code>utils.js</code>中更改配置。</p>
+			<div class="vs js">
+				<pre><code>
+if (options.extract) {
+  return ExtractTextPlugin.extract({
+    use: loaders,
+    fallback: &#39;vue-style-loader&#39;,
+    publicPath: &#39;../../&#39;
+  })
+} else {
+  return [&#39;vue-style-loader&#39;].concat(loaders)
+}
+</code></pre>
+			</div>
 		</div>
 
 		<hr>
