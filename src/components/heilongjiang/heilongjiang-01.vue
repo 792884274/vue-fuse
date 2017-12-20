@@ -12,9 +12,11 @@
 				</li>
 			</ul>
 		</div>
+		<Analysis></Analysis>
 	</div>
 </template>
 <script>
+	import Analysis from './analysis'
 	export default{
 		name: 'heilongjiang-01',
 		data () {
@@ -53,6 +55,9 @@
 				})
 				this.$store.dispatch('calculateNumber',obj);
 			}
+		},
+		components: {
+			Analysis
 		}
 	}
 </script>

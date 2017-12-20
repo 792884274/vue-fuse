@@ -117,6 +117,17 @@ before(app) {
 						</li>
 					</ul>
 				</li>
+				<li id="vuex">
+					<h5 id="-" class="point-header">vuex</h5>
+					<img src="../assets/images/vuex.png" alt="">
+					<ul>
+						<li>1.<code>modules</code>包含 <code>action</code>、 <code>mutation</code>、 <code>state</code>、<code>getter</code>。<code>sction</code>、<code>sutation</code>、<code>state</code>为<code>vuex</code>提供的数据流环节。</li>
+						<li>2.<code>action</code>是在<code>mutation</code>之前的动作，只能调用<code>mutation</code>，不能直接更改<code>state</code>。与后端的API接口需要放到<code>action</code>里面，进行一些异步的操作，再触发<code>mutation</code>。</li>
+						<li>3.<code>mutation</code>里面用同步的操作改变state。</li>
+						<li>4.<code>getters</code>获取状态集的数据。</li>
+					</ul>
+				</li>
+
 			</ul>
 			
 		</div>
@@ -155,10 +166,10 @@ methods: {
 }
 </code></pre>
 			<p>跳转到本页有两种方式<code>path: &#39;/aomen&#39;</code>和<code>path: &#39;/aomen/:id&#39;</code>。当地址栏为第二种方式时，拆解<code>window.location.pathname</code>来得到<code>id</code>。再设置<code>router-view</code>的<code>scrollTop</code>值为本页中对应<code>id</code>元素的<code>offsetTop</code>值即可。注意，此时并非设置<code>document.body.scrollTop</code>的值。设置完毕后还需在生命周期<code>mounted</code>调用函数。</p>
-			</div>
+		</div>
 			
 		
-		<div style="height: 500px;"></div>
+		
 	</div>
 </template>
 <script>
