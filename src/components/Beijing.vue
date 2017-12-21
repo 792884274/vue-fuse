@@ -3,7 +3,7 @@
 		<Gotop :className="className"></Gotop>
 		<div class="vs">
 			<h3 id="-">介绍</h3>
-			<p>&nbsp;&nbsp;本项目为<code>npm i -g vue-cli</code>构建的Vue单页应用。全局样式使用<code>github.css</code>和<code>bootstrap.css</code>，搭配Font Awesome图标。node的<code>fs</code>、<code>marked</code>模块将<code>*.md</code>文件转换为<code>*.html</code>文件，做小项目案例的文字解析使用。项目中穿插采用到jq的相关方法。</p>
+			<p>&nbsp;&nbsp;本项目为<code>vue-cli</code>构建的Vue单页应用。全局样式使用<code>github.css</code>和<code>bootstrap.css</code>，搭配Font Awesome图标。node的<code>fs</code>、<code>marked</code>模块将<code>*.md</code>文件转换为<code>*.html</code>文件，做小项目案例的文字解析使用。项目中穿插采用到jq的相关方法。</p>
 			<hr>
 			<h3 id="-">组件介绍</h3>
 			<ol>
@@ -32,10 +32,22 @@
 					父组件与子组件之间数据传递
 				</li>
 				<li>
+					<router-link to="/hebei">
+						Heilongjiang.vue(黑龙江):   
+					</router-link>
+					vuex进行状态管理
+				</li>
+				<li>
 					<router-link to="/shanxi">
 						Shanxi.vue(山西):   
 					</router-link>
 					移动端轮播图
+				</li>
+				<li>
+					<router-link to="/shanxi">
+						Liaoning.vue(辽宁):   
+					</router-link>
+					上滑加载
 				</li>
 				<li>
 					<router-link to="/aomen">

@@ -58,6 +58,13 @@
 						vuex: false
 					},
 					{
+						to: '/heilongjiang',
+						text: '黑龙江',
+						active: false,
+						amount: false,
+						vuex: true
+					},
+					{
 						to: '/shanxi',
 						text: '山西',
 						active: false,
@@ -77,13 +84,6 @@
 						active: false,
 						amount: false,
 						vuex: false
-					},
-					{
-						to: '/heilongjiang',
-						text: '黑龙江',
-						active: false,
-						amount: false,
-						vuex: true
 					},
 					{
 						to: '/jiangsu',

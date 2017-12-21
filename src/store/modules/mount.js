@@ -14,11 +14,9 @@ const state = {
 }
 const getters = {
 	getTotal: function (state) {
-		// console.log(state.total);
 		return state.total
 	},
 	getItems: function (state) {
-		// console.log(state.items);
 		return state.items
 	}		
 }
