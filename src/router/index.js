@@ -48,14 +48,15 @@ export default new Router({
 	        component: Hebei
 	    },
 	    {
-	        path: '/aomen/:id',
-	        name: 'Aomen',
-	        component: Aomen
-	    },
-	    {
 	        path: '/aomen',
 	        name: 'Aomen',
-	        component: Aomen
+	        component: Aomen,
+	        children: [
+	        	{
+	        		path: '/aomen/:id',
+	        		component: Aomen
+	        	}
+	        ]
 	    },
 	    {
 	        path: '/shanxi',
