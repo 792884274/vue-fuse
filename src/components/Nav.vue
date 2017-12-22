@@ -6,7 +6,7 @@
 		      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
 		        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
 		        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
-		        	<span class="amount" v-if="navItem.vuex">{{total}}</span>
+		        	<span class="amount nav-total" v-if="navItem.vuex">{{total}}</span>
 		      	</li>
 		    </ul> 
 		</div>
