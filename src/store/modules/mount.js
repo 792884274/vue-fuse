@@ -10,7 +10,8 @@ const state = {
 		{
 			number: 0
 		}
-	]
+	],
+	into: false
 }
 const getters = {
 	getTotal: function (state) {
@@ -18,17 +19,31 @@ const getters = {
 	},
 	getItems: function (state) {
 		return state.items
-	}		
+	},
+	getInto: function (state) {
+		return state.into
+	}			
 }
 const actions = {
 	calculateNumber (context,obj){
 		context.commit('calculate',obj)
+	},
+	intoChange (context,method){
+		context.commit('intoIf',method)
 	}
 }
 const mutations = {
 	calculate (state,obj){
 		state.items=obj.items;
 		state.total=obj.total;
+	},
+	intoIf (state,method){
+		if (method=='click') {
+			state.into=false;			
+		} else if(method=='fall'){
+			console.log(1);
+			state.into=true;	
+		}
 	}
 }
 

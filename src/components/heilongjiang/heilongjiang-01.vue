@@ -58,7 +58,7 @@
 			add(event,item) {
 				item.number++;
 				this.addDots(event.pageX, event.pageY);
-				
+				this.$store.dispatch('intoChange','click');
 			},
 			setTarget(){
 				var obj=$('.nav-total');
@@ -135,10 +135,12 @@
 			    for (var i=0; i< dots.length; i++) {
 			    	if (dots[i].id == id) {
 			    		dots[i].show = false;
+			    		this.$store.dispatch('intoChange','fall');
+			    		this.calculate();
 			    		break;
 			    	}
 			    }
-			    this.calculate();
+			    
 			},
 			beforeAppear(){
 				// console.log(33333);
