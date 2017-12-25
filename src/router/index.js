@@ -9,6 +9,8 @@ import Hebei from '@/components/Hebei'
 import Shanxi from '@/components/Shanxi'
 import Liaoning from '@/components/Liaoning'
 import Jilin from '@/components/Jilin'
+import Jiangsu from '@/components/Jiangsu'
+import Zhejiang from '@/components/Zhejiang'
 import Heilongjiang from '@/components/Heilongjiang'
 import Aomen from '@/components/Aomen'
 
@@ -72,6 +74,16 @@ export default new Router({
 	        path: '/jilin',
 	        name: 'Jilin',
 	        component: Jilin
+	    },
+	    {
+	        path: '/jiangsu',
+	        name: 'Jiangsu',
+	        component: Jiangsu
+	    },
+	    {
+	        path: '/zhejiang',
+	        name: 'Zhejiang',
+	        component: Zhejiang
 	    },
 	    {
 	        path: '/heilongjiang',

@@ -1,10 +1,10 @@
 <template>
 	<div id="" class="nav-container">
-		<div class="scroll-container" id="wrapper" v-cloak>
-			<!-- <ul class="index-nav scroll" id="scroller" :style="{width: scrollWidth+2+'px'}"> -->
-			<ul class="index-nav scroll" id="scroller">
-		      	<li v-for="navItem in indexNav" class="navItem" :class="{active:navItem.active}">
-		        	<router-link :to="navItem.to">{{navItem.text}}</router-link>
+		<div class="wrapper" id="wrapper" ref="wrapper">
+			<ul class="index-nav scroll content" id="scroller" ref="content">
+		      	<li v-for="(navItem,index) in indexNav" class="navItem" :class="{active:index==isActive}" @click="navMove(index,$event)" :title="navItem.to">
+		        	<!-- <router-link :to="navItem.to">{{navItem.text}}</router-link> -->
+		        	<strong class="text">{{navItem.text}}</strong>
 		        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
 		        	<span class="amount nav-total" v-if="navItem.vuex">{{total}}</span>
 		      	</li>
@@ -15,6 +15,7 @@
 </template>
 <script>
 	import IScroll from 'iscroll/build/iscroll.js'
+	import BScroll from 'better-scroll'
 	export default{
 		name:'Nav',
 		data(){
@@ -106,7 +107,8 @@
 						amount: false,
 						vuex: false
 					}
-				]
+				],
+				scroll: null
 			}
 		},
 		props: ['amount'],
@@ -115,14 +117,39 @@
 			this.changeActive();	
 		},
 		mounted (){
-			/*this.scrollWidth=this.indexNav.length*$('.navItem').width();
-			$('#scroller').css({
-				width: this.scrollWidth+'px'
-			})
-			new IScroll('#wrapper', { 
-				scrollX: true, 
-				scrollY: false
-			});*/
+			this.$nextTick(() => {
+				if (!this.scroll) {
+					this.scroll=new BScroll(this.$refs.wrapper, {
+						// pullup: true,
+						// probeType: 3,
+	                    deceleration: 0.001,
+	                    bounce: true,
+	                    swipeTime: 2000,
+						scrollX: true,
+						scrollY: false,
+		                click: true,
+		            });	
+		            // console.log(this.scroll);		
+				} else{
+					this.scroll.refresh();
+				}
+				/*var wrapper=this.$refs.wrapper;
+                this.scroll=new BScroll(wrapper, {
+					// pullup: true,
+					probeType: 3,
+                    deceleration: 0.001,
+                    bounce: false,
+                    swipeTime: 2000,
+					srcollX: true,
+					scrollY: false,
+	                click: true,
+	            });*/
+	            /*this.scroll.on('scrollStart', (pos) => {
+				  	// console.log(pos.x + '~' + pos.y)
+				  	console.log(11);
+				})*/
+            })
+			
 		},
 		computed: {
 			total (){
@@ -130,7 +157,38 @@
 			}
 		},
 		methods:{
-			changePage:function (index) {
+			actionStart(event){
+				// this.$refs.content.style.marginLeft=`0px`;
+			},
+			navMove(index,event) {
+				this.$router.push({path: event.currentTarget.title});
+				this.isActive=index;
+
+
+
+
+
+
+
+				
+				// console.log(index,event.currentTarget,this.$refs.content);
+				// this.$refs.content.scrollTo(0, 0);
+				// transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); 
+				// transition-duration: 800ms; 
+				// transform: translate(0px, -150px) translateZ(0px);
+				// this.$refs.content.style.transform=`translate(0px, 0px) translateZ(0px)`;
+				// this.$refs.content.style.transform=`translate(${100}px, 0px) translateZ(0px)`;
+				// $('#scroller').scrollLeft(0);
+				/*var wrapper = new BScroll('#wrapper', {
+					srcollX: true,
+					scrollY: false,
+                    click: true,
+                });*/
+                // wrapper.scrollTo(100, 0, 400);
+                console.log(this.isActive);
+			},
+
+			changePage(index) {
 				this.isActive=index;
 			},
 			initNav(){
