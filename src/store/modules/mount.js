@@ -41,7 +41,6 @@ const mutations = {
 		if (method=='click') {
 			state.into=false;			
 		} else if(method=='fall'){
-			console.log(1);
 			state.into=true;	
 		}
 	}

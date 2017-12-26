@@ -2,7 +2,7 @@
 	<div id="" class="nav-container">
 		<div class="wrapper" id="wrapper" ref="wrapper">
 			<ul class="index-nav scroll content" id="scroller" ref="content">
-		      	<li v-for="(navItem,index) in indexNav" class="navItem" :class="{active:index==isActive}" @click="navMove(index,$event)" :title="navItem.to">
+		      	<li v-for="(navItem,index) in indexNav" class="navItem" :class="{active:navItem.active}" @click="navClick(index,$event)" :title="navItem.to">
 		        	<!-- <router-link :to="navItem.to">{{navItem.text}}</router-link> -->
 		        	<strong class="text">{{navItem.text}}</strong>
 		        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
@@ -108,48 +108,32 @@
 						vuex: false
 					}
 				],
-				scroll: null
+				scroll: null,
+				maxLeft: 0
 			}
 		},
 		props: ['amount'],
 		/*在组件初始化时调用，可以简单理解为页面加载时*/
 		created (){
-			this.changeActive();	
+			// this.changeActive();	
 		},
 		mounted (){
 			this.$nextTick(() => {
 				if (!this.scroll) {
 					this.scroll=new BScroll(this.$refs.wrapper, {
-						// pullup: true,
-						// probeType: 3,
-	                    deceleration: 0.001,
+						deceleration: 0.001,
 	                    bounce: true,
 	                    swipeTime: 2000,
 						scrollX: true,
 						scrollY: false,
 		                click: true,
 		            });	
-		            // console.log(this.scroll);		
-				} else{
+		        } else{
 					this.scroll.refresh();
 				}
-				/*var wrapper=this.$refs.wrapper;
-                this.scroll=new BScroll(wrapper, {
-					// pullup: true,
-					probeType: 3,
-                    deceleration: 0.001,
-                    bounce: false,
-                    swipeTime: 2000,
-					srcollX: true,
-					scrollY: false,
-	                click: true,
-	            });*/
-	            /*this.scroll.on('scrollStart', (pos) => {
-				  	// console.log(pos.x + '~' + pos.y)
-				  	console.log(11);
-				})*/
+				this.changeActive();	
             })
-			
+			this.maxLeft=this.$refs.content.offsetWidth-this.$refs.wrapper.offsetWidth;
 		},
 		computed: {
 			total (){
@@ -160,64 +144,39 @@
 			}
 		},
 		methods:{
-			actionStart(event){
-				// this.$refs.content.style.marginLeft=`0px`;
-			},
-			navMove(index,event) {
+			/*导航点击*/
+			navClick(index,event) {
 				this.$router.push({path: event.currentTarget.title});
-				this.isActive=index;
+				this.changeActive();
+				this.navMove(index);
+			},
+			/*点击导航后，导航根据点击位置进行移动*/
+			navMove(index){
 				var left=this.$refs.content.children[0].offsetWidth*index-this.$refs.wrapper.offsetWidth/2;
-				var maxLeft=this.$refs.content.offsetWidth-this.$refs.wrapper.offsetWidth;
 				if (left<=0) {
 					left=0;	
-				} else if(left>=maxLeft){
-					left=maxLeft;
+				} else if(left>=this.maxLeft){
+					left=this.maxLeft;
 				} 
 				this.scroll.scrollTo(-left, 0, 400);
-				
-
-
-
-
-
-
-
-
-				// console.log(index,event.currentTarget,this.$refs.content);
-				// this.$refs.content.scrollTo(0, 0);
-				// transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); 
-				// transition-duration: 800ms; 
-				// transform: translate(0px, -150px) translateZ(0px);
-				// this.$refs.content.style.transform=`translate(0px, 0px) translateZ(0px)`;
-				// this.$refs.content.style.transform=`translate(${100}px, 0px) translateZ(0px)`;
-				// $('#scroller').scrollLeft(0);
-				/*var wrapper = new BScroll('#wrapper', {
-					srcollX: true,
-					scrollY: false,
-                    click: true,
-                });*/
-                // wrapper.scrollTo(100, 0, 400);
-                // console.log(this.isActive);
 			},
-
-			changePage(index) {
-				this.isActive=index;
-			},
+			/*初始化导航，默认都为非点击状态*/
 			initNav(){
 				this.indexNav.forEach(function (item) {
 					item.active=false;
 				})
 			},
 			changeActive(){
-				var _this=this;
 				var pathname=window.location.pathname;
 				this.initNav();
-		      	this.indexNav.forEach(function (item,index) {
+		      	this.indexNav.forEach((item,index)=>{
 		      		var router=item.to;
 		      		if (pathname=='/') {
-		      			_this.indexNav[0].active=true;			
+		      			this.indexNav[0].active=true;			
 		      		} else if(index!=0&&pathname.indexOf(router)!=-1){
-		      			_this.indexNav[index].active=true;
+		      			this.indexNav[index].active=true;
+		      		} else if(pathname.indexOf('aomen')!=-1){
+		      			this.scroll.scrollTo(-this.maxLeft, 0, 400);
 		      		}
 		      	})
   			},

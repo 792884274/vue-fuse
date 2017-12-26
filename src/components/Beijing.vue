@@ -20,12 +20,6 @@
 					tab切换
 				</li>
 				<li>
-					<router-link to="/chongqing">
-						Chongqing.vue(重庆):   
-					</router-link>
-					路由切换
-				</li>
-				<li>
 					<router-link to="/hebei">
 						Hebei.vue(河北):   
 					</router-link>
@@ -36,6 +30,12 @@
 						Heilongjiang.vue(黑龙江):   
 					</router-link>
 					vuex进行状态管理
+				</li>
+				<li>
+					<router-link to="/chongqing">
+						Chongqing.vue(重庆):   
+					</router-link>
+					路由切换
 				</li>
 				<li>
 					<router-link to="/shanxi">
