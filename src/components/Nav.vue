@@ -163,14 +163,14 @@
 			navMove(index,event) {
 				this.$router.push({path: event.currentTarget.title});
 				this.isActive=index;
-
-
-
-
-
-
-
+				// this.$refs.wrapper.scrollTo(100, 0, 400);
 				
+
+
+
+
+
+
 				// console.log(index,event.currentTarget,this.$refs.content);
 				// this.$refs.content.scrollTo(0, 0);
 				// transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); 
@@ -185,7 +185,7 @@
                     click: true,
                 });*/
                 // wrapper.scrollTo(100, 0, 400);
-                console.log(this.isActive);
+                // console.log(this.isActive);
 			},
 
 			changePage(index) {
