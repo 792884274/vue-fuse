@@ -45,13 +45,6 @@
 						vuex: false
 					},
 					{
-						to: '/chongqing',
-						text: '重庆',
-						active: false,
-						amount: false,
-						vuex: false
-					},
-					{
 						to: '/hebei',
 						text: '河北',
 						active: false,
@@ -64,6 +57,13 @@
 						active: false,
 						amount: false,
 						vuex: true
+					},
+					{
+						to: '/chongqing',
+						text: '重庆',
+						active: false,
+						amount: false,
+						vuex: false
 					},
 					{
 						to: '/shanxi',
@@ -166,8 +166,17 @@
 			navMove(index,event) {
 				this.$router.push({path: event.currentTarget.title});
 				this.isActive=index;
-				// this.$refs.wrapper.scrollTo(100, 0, 400);
+				var left=this.$refs.content.children[0].offsetWidth*index-this.$refs.wrapper.offsetWidth/2;
+				var maxLeft=this.$refs.content.offsetWidth-this.$refs.wrapper.offsetWidth;
+				if (left<=0) {
+					left=0;	
+				} else if(left>=maxLeft){
+					left=maxLeft;
+				} 
+				this.scroll.scrollTo(-left, 0, 400);
 				
+
+
 
 
 
