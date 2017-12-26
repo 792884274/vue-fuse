@@ -146,7 +146,7 @@
 		methods:{
 			/*导航点击*/
 			navClick(index,event) {
-				this.$router.push({path: event.currentTarget.title});
+				this.$router.push({path: event.currentTarget.title,replace: true});
 				this.changeActive();
 				this.navMove(index);
 			},
