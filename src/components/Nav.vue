@@ -6,7 +6,7 @@
 		        	<!-- <router-link :to="navItem.to">{{navItem.text}}</router-link> -->
 		        	<strong class="text">{{navItem.text}}</strong>
 		        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
-		        	<span class="amount nav-total" v-if="navItem.vuex">{{total}}</span>
+		        	<span class="amount nav-total" v-if="navItem.vuex" :class="{active:into}">{{total}}</span>
 		      	</li>
 		    </ul> 
 		</div>
@@ -154,6 +154,9 @@
 		computed: {
 			total (){
 				return this.$store.getters.getTotal
+			},
+			into (){
+				return this.$store.getters.getInto
 			}
 		},
 		methods:{
