@@ -4,7 +4,8 @@
 			<h5 id="-">上滑刷新解析</h5>
 		</div>
 		<div class="vs html margin-top">
-			<pre><code>&lt;div class=&quot;liaoning-01&quot;&gt;
+			<pre><code>
+&lt;div class=&quot;liaoning-01&quot;&gt;
   &lt;ul class=&quot;items lc&quot;&gt;
     &lt;li class=&quot;lc-item item clearfix&quot; 
       v-for=&quot;(item,index) in items&quot;&gt;
@@ -29,7 +30,8 @@
 </code></pre>
 		</div>
 		<div class="vs js">
-			<pre><code>data () {
+			<pre><code>
+data () {
   return {
     id: &#39;example&#39;,
     items: [],
