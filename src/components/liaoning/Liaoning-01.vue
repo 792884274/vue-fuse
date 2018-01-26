@@ -29,16 +29,38 @@
 				items: [],
 				more: true,
 				number: 0,
-				analog: []
+				analog: [],
+				analog: [
+					{
+						"img": "https://cn.vuejs.org/images/logo.png",
+						"to": "/"
+					},
+					{
+						"img": "https://cn.vuejs.org/images/logo.png",
+						"to": "/"
+					},
+					{
+						"img": "https://cn.vuejs.org/images/logo.png",
+						"to": "/"
+					},
+					{
+						"img": "https://cn.vuejs.org/images/logo.png",
+						"to": "/"
+					},
+					{
+						"img": "https://cn.vuejs.org/images/logo.png",
+						"to": "/"
+					}
+				]
 			}
 		},
 		created (){
-			this.$http.get('/api/liaoning')
+			/*this.$http.get('/api/liaoning')
 			.then((res)=>{
 				this.analog=res.data.data.items;
 			},(err)=>{
 				console.log(err);
-			})
+			})*/
 		},
 		mounted (){
 			this.element=document.querySelector('.liaoning-01');
