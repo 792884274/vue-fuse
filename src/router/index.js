@@ -17,11 +17,16 @@ import Aomen from '@/components/Aomen'
 Vue.use(Router)
 
 export default new Router({
-	// mode: 'history',
-	mode: 'hash',
+	mode: 'history',
+	// mode: 'hash',
 	//外网访问地址为http://792884274.com/vue-fuse/,所以要设置base
 	base: '/vue-fuse/',
 	routes: [
+		{
+			path: '*',
+	      	name: 'Nofound',
+	      	component: Beijing
+		},
 	    {
 	      	path: '/',
 	      	name: 'Beijing',
