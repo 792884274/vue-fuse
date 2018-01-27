@@ -18,6 +18,7 @@ Vue.use(Router)
 
 export default new Router({
 	mode: 'history',
+	//外网访问地址为http://792884274.com/vue-fuse/,所以要设置base
 	base: '/vue-fuse/',
 	routes: [
 	    {
