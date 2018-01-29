@@ -1,16 +1,17 @@
 <template>
 	<div class="shanxi-02">
-		<div v-if="items.length" class="slider-wrapper" ref="sliderWrapper">
-          	<slider>
-		        <div v-for="item in items">
-		          <a :href="item.to">
-		            <img class="needsclick" :src="item.img">
-		          </a>
-		        </div>
-	    	</slider>
-        </div>
-		
-		<!-- <Analysis02></Analysis02> -->
+		<div class="recommend" ref="recommend">
+			<div v-if="items.length" class="slider-wrapper" ref="sliderWrapper">
+	          	<slider>
+			        <div v-for="item in items">
+			          <a :href="item.to">
+			            <img class="needsclick" :src="item.img">
+			          </a>
+			        </div>
+		    	</slider>
+	        </div>
+		</div>
+		<Analysis02></Analysis02>
 		
 	</div>
 </template>
@@ -47,12 +48,32 @@ export default {
 		}
 	},
 	created(){
+		// this.getList();
 	},
 	mounted(){
 		
 	},
 	methods: {
-		
+		getList() {
+			this.items=[
+				{
+					img: image1,
+					to: '/'
+				},
+				{
+					img: image2,
+					to: '/'
+				},
+				{
+					img: image3,
+					to: '/'
+				},
+				{
+					img: image4,
+					to: '/'
+				}
+			]
+		}
 	},
 	components: {
 		Slider,
@@ -62,5 +83,5 @@ export default {
 	
 </script>
 <style lang='less'>
-	
+
 </style>
