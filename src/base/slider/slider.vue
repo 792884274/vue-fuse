@@ -13,7 +13,6 @@
 <script type="text/ecmascript-6">
   import {addClass} from 'assets/js/dom'
   import BScroll from 'better-scroll'
-  console.log(BScroll);
 
   export default {
     name: 'Slider',
@@ -24,7 +23,7 @@
       },
       autoPlay: {
         type: Boolean,
-        default: false
+        default: true
       },
       interval: {
         type: Number,
@@ -65,21 +64,25 @@
       clearTimeout(this.timer)
     },
     beforeDestroy() {
-      clearTimeout(this.timer)
+      clearTimeout(this.timer)// 有利于内存的释放
     },
     methods: {
       _setSliderWidth(isResize) {
+        // 取轮播组的子元素
         this.children=this.$refs.sliderGroup.children;
 
         let width=0;
+        // 取轮播组件宽度(即屏幕宽度)
         let sliderWidth=this.$refs.slider.clientWidth;
         for (let i=0; i<this.children.length; i++) {
           let child=this.children[i];
           addClass(child, 'slider-item');
-
+          // 设置轮播子图宽度为屏幕宽度
           child.style.width=sliderWidth+'px';
+          // 将轮播子图累加
           width+=sliderWidth;
         }
+        // 增加2个slider宽度,为无缝滚动服务
         if (this.loop && !isResize) {
           width+=2*sliderWidth
         }
@@ -90,23 +93,34 @@
         this.slider=new BScroll(this.$refs.slider, {
           scrollX: true,
           scrollY: false,
-          momentum: false,
-          snap: true,
-          snapLoop: this.loop,
-          snapThreshold: 0.3,
-          snapSpeed: 400
+          momentum: false,// 惯性
+          snap: {
+            snap: true,
+            loop: this.loop,// 循环
+            threshold: 0.3,// 滚动距离超过宽度/高度的 30% 时切换图片
+            speed: 400// 轮播间隔
+          },
+          click: true
         })
         // console.log(this.slider);
         this.slider.on('scrollEnd', () => {
+          
           let pageIndex=this.slider.getCurrentPage().pageX
-          if (this.loop) {
-            pageIndex-=1;
-          }
-          console.log(_this.slider);
+          // 老版本有,新版去掉:
+          /*if (this.loop) {
+            pageIndex -= 1
+          }*/
+          console.log(pageIndex);
+          
+          // console.log(pageIndex);
           this.currentPageIndex=pageIndex;
-
+          /*if (pageIndex>=this.children.length-1) {
+            this.currentPageIndex=1;  
+            pageIndex=this.currentPageIndex+1;
+          }*/
+          // console.log(this);
           if (this.autoPlay) {
-            this._play()
+            this._play();
           }
         })
 
@@ -118,11 +132,17 @@
       },
       _initDots() {
         this.dots=new Array(this.children.length);
+        // this.dots=new Array(this.children.length - 2)
       },
       _play() {
-        let pageIndex=this.currentPageIndex+1
-        if (this.loop) {
-          pageIndex+=1
+        let pageIndex=this.currentPageIndex+1;
+        // 老版本有,新版去掉:
+        /*if (this.loop) {
+          pageIndex+=1;
+        }*/
+        //判断是否已经到最后一张图了
+        if (pageIndex>=this.dots.length) {
+            pageIndex=0;
         }
         this.timer=setTimeout(() => {
           this.slider.goToPage(pageIndex, 0, 400)
@@ -133,11 +153,9 @@
 </script>
 
 <style lang='less'>
-
   .slider{
     position: relative;
     width: 100%;
-    // min-height: 1px;
     .slider-group{
       position: relative;
       overflow: hidden;
@@ -174,12 +192,10 @@
         height: 8px;
         border-radius: 50%;
         background: #fff;
-        /*background: $color-text-l;*/
         &.active{
           width: 20px;
           border-radius: 5px;
           background: #fff;
-          /*background: $color-text-ll;*/
         }
       }
     }

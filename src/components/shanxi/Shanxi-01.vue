@@ -12,7 +12,7 @@
 				<li class="dot" v-for="(item,index) in items" :class="{active:index==nowLocal}"></li>
 			</ul>
 		</div>
-		<!-- <Analysis01></Analysis01> -->
+		<Analysis01></Analysis01>
 		
 	</div>
 </template>

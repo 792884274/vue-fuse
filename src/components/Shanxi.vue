@@ -1,7 +1,7 @@
 <template>
 	<div class="shanxi">
 		<Gotop :className="className"></Gotop>
-		<!-- <Shanxi01></Shanxi01> -->
+		<Shanxi01></Shanxi01>
 		<Shanxi02></Shanxi02>
 	</div>
 </template>
