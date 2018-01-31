@@ -24,4 +24,7 @@ export default {
 </script>
 <style lang='less'>
 	@import '../assets/less/shanxi.less';
+	.shanxi.child-view {
+	    padding: 0 0 50px;
+	}
 </style>
