@@ -5,6 +5,7 @@
 		<Tianjin01 :item="single"></Tianjin01>
 		<!-- 第二个例子 -->
 		<Tianjin02 :items="multiLine"></Tianjin02>
+		
 	</div>
 </template>
 <script>

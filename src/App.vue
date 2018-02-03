@@ -1,12 +1,17 @@
 <template>
 	<div id="app">
 		<Nav :amount="amount"></Nav>
-		<transition	:name="transitionName">
-			<router-view class="child-view" :amount="amount" :itemsNumber="itemsNumber" @deassign="numberChange"></router-view>
-		</transition>
+		
+			<transition	:name="transitionName">
+				<!-- <Scroll ref="scroll"> -->
+				<router-view class="child-view" :amount="amount" :itemsNumber="itemsNumber" @deassign="numberChange"></router-view>
+				<!-- </Scroll> -->
+			</transition>
+		
 	</div>
 </template>
 <script>
+	import Scroll from './base/scroll/scroll'
 	export default{
 		name: 'app',
 		data () {
@@ -20,8 +25,21 @@
 			numberChange(number,items){
 				this.amount=number;
 				this.itemsNumber=items;
+			},
+			scrollRefresh(){
+				console.log(1111);
+				this.$refs.scroll.refresh();
 			}
-		}
+		},
+		mounted () {
+			/*var _this=this;
+			setTimeout(function () {
+				_this.$refs.scroll.refresh();
+			},20)*/
+		},
+		components: {
+			Scroll
+		},
 	}
 	
 </script>
