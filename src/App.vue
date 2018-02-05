@@ -1,13 +1,9 @@
 <template>
 	<div id="app">
 		<Nav :amount="amount"></Nav>
-		
 			<transition	:name="transitionName">
-				<!-- <Scroll ref="scroll"> -->
 				<router-view class="child-view" :amount="amount" :itemsNumber="itemsNumber" @deassign="numberChange"></router-view>
-				<!-- </Scroll> -->
 			</transition>
-		
 	</div>
 </template>
 <script>
@@ -27,15 +23,11 @@
 				this.itemsNumber=items;
 			},
 			scrollRefresh(){
-				// console.log(1111);
 				this.$refs.scroll.refresh();
 			}
 		},
 		mounted () {
-			/*var _this=this;
-			setTimeout(function () {
-				_this.$refs.scroll.refresh();
-			},20)*/
+			
 		},
 		components: {
 			Scroll
