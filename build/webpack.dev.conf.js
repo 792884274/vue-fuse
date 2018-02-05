@@ -63,7 +63,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.html',
       inject: true,
-      favicon: './favicon.ico'
+      // favicon: './favicon.ico'
+      favicon: path.resolve('favicon.ico')
     }),
   ]
 })
