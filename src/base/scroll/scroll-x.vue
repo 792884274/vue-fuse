@@ -1,8 +1,6 @@
 <template>
-	<div id="" class="scroll-container">
-		<div class="wrapper" id="wrapper" ref="wrapper">
-			<slot></slot>
-		</div>
+	<div class="wrapper" id="wrapper" ref="wrapper">
+		<slot></slot>
 	</div>
 </template>
 <script>
@@ -29,39 +27,27 @@
 					this.scroll.refresh();
 				}	
             })
+		},
+		methods: {
+			refresh() {
+				this.scroll&&this.scroll.refresh()
+			},
+			scrollTo() {
+				this.scroll&&this.scroll.scrollTo.apply(this.scroll,arguments)
+			}
 		}
 	}
 </script>
 <style lang='less'>
-	.scroll-container{
-		position: relative;
-		height: 50px;
-		width: 100%;
-		padding: 0;
-		margin: 0;
-		z-index: 12;
-	    &::-webkit-scrollbar {
-	        display: none;
-	    }
-	    #wrapper{
-	    	position: relative;
-		    z-index: 1;
-		    height: 100%;
-		    width: 100%;
-		    overflow-x: scroll;
-		    overflow-y: hidden; 
-		    &::-webkit-scrollbar {
-		        display: none;
-		    }
-	    }
-	    #scroller {
-		    position: absolute;
-		    z-index: 1;
-		    height: 100%;
-		    &:nth-child(1){
-		    	height: 100%;
-				display: flex;
-		    }
-		}
-	}
+#wrapper{
+	position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden; 
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
 </style>

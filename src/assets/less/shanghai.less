@@ -1,14 +1,25 @@
 .shanghai{
 	/* 第一个例子 */
 	.shanghai-01{
-		.tabs-container{
-			.content{
-				display: flex;
-				// overflow-x: scroll;
+		.scroll-container {
+		    height: 3em;
+		    position: relative;
+			height: 50px;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+			z-index: 12;
+			background: transparent;
+		    &::-webkit-scrollbar {
+		        display: none;
+		    }
+		    #scroller{
+		    	height: 2em;
+		    	display: flex;
 				padding-bottom: 1em;
+				box-sizing: content-box;
 				 li{
-					// flex: 1;
-					// float: left;
+					line-height: 2em;
 					border: 1px solid red;
 					border-radius: 6px;
 					text-align: center;
@@ -24,13 +35,13 @@
 					border: 1px solid #42b983;
 				}
 				&::-webkit-scrollbar {
-							        display: none;
-							    } 
-			}
-			.tabs-contents{
-				li{
-					text-align: center;
-				}
+			        display: none;
+			    } 
+		    }
+		}
+		.tabs-contents{
+			li{
+				text-align: center;
 			}
 		}
 	}

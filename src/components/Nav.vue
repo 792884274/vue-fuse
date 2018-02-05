@@ -1,20 +1,18 @@
 <template>
-	<div id="" class="nav-container">
-		<div class="wrapper" id="wrapper" ref="wrapper">
+	<div class="scroll-container">
+		<ScrollX ref="scroll">
 			<ul class="index-nav scroll content" id="scroller" ref="content">
 		      	<li v-for="(navItem,index) in indexNav" class="navItem" :class="{active:navItem.active}" @click="navClick(index,$event)" :title="navItem.to">
-		        	<!-- <router-link :to="navItem.to">{{navItem.text}}</router-link> -->
 		        	<strong class="text">{{navItem.text}}</strong>
 		        	<span class="amount" v-if="navItem.amount">{{amount}}</span>
 		        	<span class="amount nav-total" v-if="navItem.vuex" :class="{active:into}">{{total}}</span>
 		      	</li>
 		    </ul> 
-		</div>
+		</ScrollX>
 	</div>
-	
 </template>
 <script>
-	import IScroll from 'iscroll/build/iscroll.js'
+	import ScrollX from 'base/scroll/scroll-x'
 	import BScroll from 'better-scroll'
 	export default{
 		name:'Nav',
@@ -120,20 +118,14 @@
 		mounted (){
 			this.$nextTick(() => {
 				if (!this.scroll) {
-					this.scroll=new BScroll(this.$refs.wrapper, {
-						deceleration: 0.001,
-	                    bounce: true,
-	                    swipeTime: 2000,
-						scrollX: true,
-						scrollY: false,
-		                click: true,
-		            });	
+		   			//this.$refs.scroll直接获取滑动对象
+		   			this.scroll=this.$refs.scroll;
 		        } else{
 					this.scroll.refresh();
 				}
 				this.changeActive();	
             })
-			this.maxLeft=this.$refs.content.offsetWidth-this.$refs.wrapper.offsetWidth;
+			this.maxLeft=this.$refs.content.offsetWidth-this.$refs.content.parentNode.offsetWidth;
 		},
 		computed: {
 			total (){
@@ -152,7 +144,7 @@
 			},
 			// 点击导航后，导航根据点击位置进行移动
 			navMove(index){
-				var left=this.$refs.content.children[0].offsetWidth*index-this.$refs.wrapper.offsetWidth/2;
+				var left=this.$refs.content.children[0].offsetWidth*index-this.$refs.content.parentNode.offsetWidth/2;
 				if (left<=0) {
 					left=0;	
 				} else if(left>=this.maxLeft){
@@ -167,22 +159,26 @@
 				})
 			},
 			changeActive(){
-				var pathname=window.location.pathname;
+				var pathname=window.location.pathname,
+					patharr=pathname.split('/');
 				this.initNav();
 		      	this.indexNav.forEach((item,index)=>{
 		      		var router=item.to;
-		      		if (pathname=='/') {
-		      			this.indexNav[0].active=true;			
-		      		} else if(index!=0&&pathname.indexOf(router)!=-1){
+		      		if(index!=0&&pathname.indexOf(router)!=-1){
 		      			this.indexNav[index].active=true;
 		      		} else if(pathname.indexOf('aomen')!=-1){
 		      			this.scroll.scrollTo(-this.maxLeft, 0, 400);
+		      		} else if(patharr[patharr.length-1]==''){
+		      			this.indexNav[0].active=true;
 		      		}
 		      	})
   			},
   			getStyle(ele,attr){
 				return parseFloat(ele.currentStyle?ele.currentStyle[attr]:getComputedStyle(ele)[attr]);
 			}
+		},
+		components: {
+			ScrollX
 		},
 		watch: {
 		    // 如果路由有变化，会再次执行该方法

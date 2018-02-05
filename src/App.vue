@@ -27,7 +27,7 @@
 				this.itemsNumber=items;
 			},
 			scrollRefresh(){
-				console.log(1111);
+				// console.log(1111);
 				this.$refs.scroll.refresh();
 			}
 		},

@@ -1,11 +1,13 @@
 <template>
 	<div class="shanghai-01">
 		<div class="exh tabs-container">
-			<ScrollX>
-				<ul ref="content" class="content" id="scroller">
-					<li v-for="(buttonsItem,index) in tabs.buttons" @click="tabSwitch(index)" :class="{active:index==tabNum}" style="min-width: 3.6em;">{{buttonsItem.text}}</li>
-				</ul>
-			</ScrollX>
+			<div id="" class="scroll-container">
+				<ScrollX ref="scroll">
+					<ul ref="content" class="content" id="scroller">
+						<li v-for="(buttonsItem,index) in tabs.buttons" @click="tabSwitch(index)" :class="{active:index==tabNum}" style="min-width: 3.6em;">{{buttonsItem.text}}</li>
+					</ul>
+				</ScrollX>
+			</div>
 			<ul class="tabs-contents">
 				<li v-for="(content,index) in tabs.contents" v-show="index==tabNum">{{content.text}}</li>
 			</ul>
@@ -33,7 +35,7 @@
 			}
 		},
 		mounted () {
-			
+			// console.log(this.$refs.scroll);
 		},
 		components: {
 			ScrollX,
@@ -43,16 +45,6 @@
 	
 </script>
 <style lang='less'>
-	.shanghai-01{
-		.scroll-container {
-		    height: 3em;
-		    #scroller{
-		    	height: 2em;
-		    	li{
-		    		line-height: 2em;
-		    	}
-		    }
-		}
-	}
+	
 	
 </style>

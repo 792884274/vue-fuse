@@ -292,11 +292,12 @@ export default {
 			aomen.scrollTop=Number(element.offsetTop)-30;
 		},
 		getPathname(){
-			var pathname=window.location.pathname;
-			var id=pathname.split('/')[2];
-			if (pathname.split('/')[1]=='aomen') {
+			var pathName=window.location.pathname,
+				pathArr=pathName.split('/'),
+				id=pathArr[pathArr.length-1];
+			if (id!=='aomen') {
 				return id;			
-			} else if(pathname.split('/')[1]==''){
+			} else{
 				return false;
 			}
 		}

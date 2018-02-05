@@ -102,23 +102,10 @@
           },
           click: true
         })
-        // console.log(this.slider);
         this.slider.on('scrollEnd', () => {
           
           let pageIndex=this.slider.getCurrentPage().pageX
-          // 老版本有,新版去掉:
-          /*if (this.loop) {
-            pageIndex -= 1
-          }*/
-          console.log(pageIndex);
-          
-          // console.log(pageIndex);
           this.currentPageIndex=pageIndex;
-          /*if (pageIndex>=this.children.length-1) {
-            this.currentPageIndex=1;  
-            pageIndex=this.currentPageIndex+1;
-          }*/
-          // console.log(this);
           if (this.autoPlay) {
             this._play();
           }
@@ -132,14 +119,9 @@
       },
       _initDots() {
         this.dots=new Array(this.children.length);
-        // this.dots=new Array(this.children.length - 2)
       },
       _play() {
         let pageIndex=this.currentPageIndex+1;
-        // 老版本有,新版去掉:
-        /*if (this.loop) {
-          pageIndex+=1;
-        }*/
         //判断是否已经到最后一张图了
         if (pageIndex>=this.dots.length) {
             pageIndex=0;
