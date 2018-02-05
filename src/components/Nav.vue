@@ -144,13 +144,13 @@
 			}
 		},
 		methods:{
-			/*导航点击*/
+			// 导航点击
 			navClick(index,event) {
 				this.$router.push({path: event.currentTarget.title,replace: true});
 				this.changeActive();
 				this.navMove(index);
 			},
-			/*点击导航后，导航根据点击位置进行移动*/
+			// 点击导航后，导航根据点击位置进行移动
 			navMove(index){
 				var left=this.$refs.content.children[0].offsetWidth*index-this.$refs.wrapper.offsetWidth/2;
 				if (left<=0) {
@@ -160,7 +160,7 @@
 				} 
 				this.scroll.scrollTo(-left, 0, 400);
 			},
-			/*初始化导航，默认都为非点击状态*/
+			// 初始化导航，默认都为非点击状态
 			initNav(){
 				this.indexNav.forEach(function (item) {
 					item.active=false;
