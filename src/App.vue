@@ -1,9 +1,9 @@
 <template>
 	<div id="app">
 		<Nav :amount="amount"></Nav>
-			<transition	:name="transitionName">
-				<router-view class="child-view" :amount="amount" :itemsNumber="itemsNumber" @deassign="numberChange"></router-view>
-			</transition>
+		<transition	:name="transitionName">
+			<router-view class="child-view" :amount="amount" :itemsNumber="itemsNumber" @deassign="numberChange"></router-view>
+		</transition>
 	</div>
 </template>
 <script>
